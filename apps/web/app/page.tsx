@@ -40,7 +40,7 @@ export default function Home() {
       </div>
       <section>
         <div className="section-heading">
-          <span>TRY THE CONNECTION</span>
+          <span>TRY A TYPED REQUEST</span>
           <code>GET /api/greeting</code>
         </div>
         <form onSubmit={submit}>
