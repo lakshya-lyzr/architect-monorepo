@@ -15,6 +15,7 @@ type GreetingInput struct {
 }
 
 type Greeting struct {
+	Service  string `json:"service" doc:"Service that produced the greeting"`
 	Message  string `json:"message" doc:"A greeting from Go"`
 	Name     string `json:"name" doc:"The validated name"`
 	Language string `json:"language" enum:"go" doc:"Backend language"`
@@ -37,6 +38,7 @@ func New() (*gin.Engine, huma.API) {
 		Summary:     "Get a personalized greeting from Go",
 	}, func(ctx context.Context, input *GreetingInput) (*GreetingOutput, error) {
 		return &GreetingOutput{Body: Greeting{
+			Service:  "architect-backend",
 			Message:  fmt.Sprintf("Hello, %s! This response came from Go.", input.Name),
 			Name:     input.Name,
 			Language: "go",

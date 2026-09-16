@@ -108,9 +108,14 @@
           "name": {
             "description": "The validated name",
             "type": "string"
+          },
+          "service": {
+            "description": "Service that produced the greeting",
+            "type": "string"
           }
         },
         "required": [
+          "service",
           "message",
           "name",
           "language"

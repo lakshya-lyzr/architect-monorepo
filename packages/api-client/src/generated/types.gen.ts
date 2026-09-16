@@ -67,6 +67,10 @@ export type Greeting = {
      * The validated name
      */
     name: string;
+    /**
+     * Service that produced the greeting
+     */
+    service: string;
 };
 
 export type ErrorModelWritable = {
@@ -109,6 +113,10 @@ export type GreetingWritable = {
      * The validated name
      */
     name: string;
+    /**
+     * Service that produced the greeting
+     */
+    service: string;
 };
 
 export type GetGreetingData = {
