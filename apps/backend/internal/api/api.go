@@ -37,7 +37,7 @@ func New() (*gin.Engine, huma.API) {
 		Summary:     "Get a personalized greeting from Go",
 	}, func(ctx context.Context, input *GreetingInput) (*GreetingOutput, error) {
 		return &GreetingOutput{Body: Greeting{
-			Message:  fmt.Sprintf("Hello, %s! This response came from Go.", input.Name),
+			Message:  fmt.Sprintf("Hello, %s! This greeting came from the Go backend.", input.Name),
 			Name:     input.Name,
 			Language: "go",
 		}}, nil
