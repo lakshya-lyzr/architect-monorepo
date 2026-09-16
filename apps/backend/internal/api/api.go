@@ -15,7 +15,7 @@ type GreetingInput struct {
 }
 
 type Greeting struct {
-	Message  string `json:"message" doc:"A greeting from Go"`
+	Message  string `json:"greetingText" doc:"A greeting from Go"`
 	Name     string `json:"name" doc:"The validated name"`
 	Language string `json:"language" enum:"go" doc:"Backend language"`
 }
