@@ -8,12 +8,13 @@
     "typecheck": "nx run web:typecheck",
     "test": "nx run backend:test",
     "build": "nx run-many -t build --projects=backend,web",
-    "check": "pnpm lint && pnpm format:check && pnpm test && pnpm typecheck && pnpm build",
+    "check": "pnpm test:ci && pnpm lint && pnpm format:check && pnpm test && pnpm typecheck && pnpm build",
     "lint": "nx run-many -t lint --projects=backend,web",
     "lint:fix": "nx run-many -t lint:fix --projects=backend,web",
     "format": "nx run-many -t format --projects=backend,web",
     "format:check": "nx run-many -t format:check --projects=backend,web",
-    "prepare": "lefthook install"
+    "prepare": "lefthook install",
+    "test:ci": "node --test tools/ci/*.test.mjs"
   },
   "devDependencies": {
     "@hey-api/openapi-ts": "0.99.0",

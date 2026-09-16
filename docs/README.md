@@ -10,3 +10,9 @@ Keep frontend-specific guidance in `frontend/`, backend-specific guidance in
 `backend/`, and cross-application guidance in `common/`.
 
 For installation and startup, see the [root README](../README.md).
+
+Documentation-only changes still run CI automation tests, but skip frontend and
+backend application checks. See the [CI guide](common/README.md#continuous-integration).
+
+See [Monorepo structure and CI/CD pipelines](common/monorepo-and-pipelines.md)
+for the repository map, contract flow, selective checks, and release automation.
