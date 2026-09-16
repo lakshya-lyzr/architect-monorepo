@@ -1,0 +1,32 @@
+# Keep formatting and linting sequential so linters see the formatted files.
+glob_matcher: doublestar
+
+pre-commit:
+  jobs:
+    - name: frontend-format
+      root: apps/web/
+      glob: "**/*.{js,jsx,ts,tsx,mjs,cjs,json,jsonc,css,scss,html,md,mdx,yaml,yml}"
+      exclude:
+        - next-env.d.ts
+        - AGENTS.md
+        - CLAUDE.md
+      run: pnpm exec oxfmt {staged_files}
+      stage_fixed: true
+
+    - name: frontend-lint
+      root: apps/web/
+      glob: "**/*.{js,jsx,ts,tsx,mjs,cjs}"
+      exclude:
+        - next-env.d.ts
+      run: pnpm exec oxlint --deny-warnings {staged_files}
+
+    - name: backend-format
+      root: apps/backend/
+      glob: "**/*.go"
+      run: gofmt -w {staged_files}
+      stage_fixed: true
+
+    - name: backend-lint
+      root: apps/backend/
+      glob: "**/*.go"
+      run: node ../../tools/lint-staged-go.mjs

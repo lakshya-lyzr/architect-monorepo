@@ -1,0 +1,122 @@
+{
+  "name": "backend",
+  "projectType": "application",
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "continuous": true,
+      "options": {
+        "command": "go run ./cmd/backend",
+        "cwd": "apps/backend"
+      }
+    },
+    "openapi": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/**/*.go",
+        "{projectRoot}/go.mod",
+        "{projectRoot}/go.sum"
+      ],
+      "outputs": [
+        "{projectRoot}/openapi.json"
+      ],
+      "options": {
+        "command": "go run ./cmd/backend -openapi openapi.json",
+        "cwd": "apps/backend"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "options": {
+        "command": "go build -o dist/backend ./cmd/backend",
+        "cwd": "apps/backend"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "go test ./...",
+        "cwd": "apps/backend"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/tools/gofmt.mjs",
+        {
+          "runtime": "go version"
+        }
+      ],
+      "options": {
+        "command": "go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.13.2 run ./...",
+        "cwd": "apps/backend"
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/tools/gofmt.mjs",
+        {
+          "runtime": "go version"
+        }
+      ],
+      "options": {
+        "command": "go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.13.2 run --fix ./...",
+        "cwd": "apps/backend"
+      }
+    },
+    "lint:config": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/tools/gofmt.mjs",
+        {
+          "runtime": "go version"
+        }
+      ],
+      "options": {
+        "command": "go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.13.2 config verify",
+        "cwd": "apps/backend"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/tools/gofmt.mjs",
+        {
+          "runtime": "go version"
+        }
+      ],
+      "options": {
+        "command": "node ../../tools/gofmt.mjs",
+        "cwd": "apps/backend"
+      }
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/tools/gofmt.mjs",
+        {
+          "runtime": "go version"
+        }
+      ],
+      "options": {
+        "command": "node ../../tools/gofmt.mjs --check",
+        "cwd": "apps/backend"
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "name": "architect-monorepo",
+  "private": true,
+  "packageManager": "pnpm@12.1.0",
+  "scripts": {
+    "dev": "nx run-many -t dev --projects=backend,web --parallel=2",
+    "generate": "nx run api-client:generate",
+    "typecheck": "nx run web:typecheck",
+    "test": "nx run backend:test",
+    "build": "nx run-many -t build --projects=backend,web",
+    "check": "pnpm lint && pnpm format:check && pnpm test && pnpm typecheck && pnpm build",
+    "lint": "nx run-many -t lint --projects=backend,web",
+    "lint:fix": "nx run-many -t lint:fix --projects=backend,web",
+    "format": "nx run-many -t format --projects=backend,web",
+    "format:check": "nx run-many -t format:check --projects=backend,web",
+    "prepare": "lefthook install"
+  },
+  "devDependencies": {
+    "@hey-api/openapi-ts": "0.99.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "lefthook": "2.1.14",
+    "nx": "23.2.1",
+    "oxfmt": "0.68.0",
+    "oxlint": "1.83.0",
+    "typescript": "~5.9.3"
+  },
+  "engines": {
+    "node": ">=22.18.0",
+    "pnpm": ">=12.1.0"
+  }
+}

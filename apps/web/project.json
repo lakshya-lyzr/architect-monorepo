@@ -1,0 +1,93 @@
+{
+  "name": "web",
+  "projectType": "application",
+  "implicitDependencies": ["api-client"],
+  "targets": {
+    "dev": {
+      "executor": "nx:run-commands",
+      "continuous": true,
+      "dependsOn": [
+        {
+          "projects": ["api-client"],
+          "target": "generate"
+        }
+      ],
+      "options": {
+        "command": "next dev --hostname 127.0.0.1 --port 3000",
+        "cwd": "apps/web"
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        {
+          "projects": ["api-client"],
+          "target": "generate"
+        }
+      ],
+      "outputs": ["{projectRoot}/.next"],
+      "inputs": [
+        "default",
+        "^default",
+        "sharedGlobals",
+        {
+          "env": "API_URL"
+        }
+      ],
+      "options": {
+        "command": "next build",
+        "cwd": "apps/web"
+      }
+    },
+    "typecheck": {
+      "executor": "nx:run-commands",
+      "dependsOn": [
+        {
+          "projects": ["api-client"],
+          "target": "generate"
+        }
+      ],
+      "options": {
+        "command": "next typegen && tsc --noEmit",
+        "cwd": "apps/web"
+      },
+      "inputs": ["default", "^default", "sharedGlobals"]
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "sharedGlobals"],
+      "options": {
+        "command": "oxlint --deny-warnings .",
+        "cwd": "apps/web"
+      }
+    },
+    "lint:fix": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "inputs": ["default", "sharedGlobals"],
+      "options": {
+        "command": "oxlint --fix .",
+        "cwd": "apps/web"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "inputs": ["default", "sharedGlobals"],
+      "options": {
+        "command": "oxfmt .",
+        "cwd": "apps/web"
+      }
+    },
+    "format:check": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "sharedGlobals"],
+      "options": {
+        "command": "oxfmt --check .",
+        "cwd": "apps/web"
+      }
+    }
+  }
+}

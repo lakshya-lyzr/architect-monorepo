@@ -1,0 +1,34 @@
+{
+  "name": "api-client",
+  "projectType": "library",
+  "implicitDependencies": [
+    "backend"
+  ],
+  "targets": {
+    "generate": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "dependsOn": [
+        {
+          "projects": [
+            "backend"
+          ],
+          "target": "openapi"
+        }
+      ],
+      "inputs": [
+        "{workspaceRoot}/openapi-ts.config.ts",
+        "{workspaceRoot}/apps/backend/**/*.go",
+        "{workspaceRoot}/apps/backend/go.mod",
+        "{workspaceRoot}/apps/backend/go.sum",
+        "sharedGlobals"
+      ],
+      "outputs": [
+        "{projectRoot}/src/generated"
+      ],
+      "options": {
+        "command": "openapi-ts"
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@demo/api-client",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/generated/index.ts",
+    "./query": "./src/generated/@tanstack/react-query.gen.ts"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "5.103.0"
+  }
+}

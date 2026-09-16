@@ -1,0 +1,163 @@
+:root {
+  color-scheme: light;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f6f7f9;
+  color: #15243b;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+main {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 76px 28px;
+}
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  font-weight: 700;
+  color: #67778c;
+}
+h1 {
+  font-size: clamp(42px, 7vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -3px;
+  margin: 25px 0;
+}
+h1 span {
+  color: #6b7e94;
+}
+.intro {
+  max-width: 560px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #637188;
+}
+.pipeline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px 0 38px;
+  font-size: 12px;
+}
+.pipeline span {
+  border: 1px solid #d9e0e9;
+  background: white;
+  border-radius: 7px;
+  padding: 9px 12px;
+}
+.pipeline b {
+  color: #8292a6;
+}
+section {
+  background: white;
+  border: 1px solid #dfe5ee;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px #263a5810;
+}
+.section-heading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 26px;
+  border-bottom: 1px solid #edf0f5;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+code,
+pre {
+  font-family: monospace;
+}
+form {
+  padding: 25px 26px;
+}
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.input-row {
+  display: flex;
+  gap: 12px;
+}
+input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px 15px;
+  border: 1px solid #cdd6e2;
+  border-radius: 7px;
+  font: inherit;
+}
+button {
+  background: #2259e5;
+  color: white;
+  border: 0;
+  border-radius: 7px;
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button span {
+  margin-left: 12px;
+}
+button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.response {
+  background: #fafbfd;
+  border-top: 1px solid #edf0f5;
+  padding: 26px;
+  min-height: 230px;
+}
+.success {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: #157c63;
+}
+h2 {
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+pre {
+  overflow: auto;
+  color: #345275;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.inferred,
+.footnote {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #718096;
+}
+.footnote {
+  margin-top: 25px;
+}
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid #96b6ff;
+  outline-offset: 3px;
+}
+@media (max-width: 540px) {
+  main {
+    padding: 38px 18px;
+  }
+  .input-row {
+    flex-direction: column;
+  }
+  h1 {
+    letter-spacing: -2px;
+  }
+}
