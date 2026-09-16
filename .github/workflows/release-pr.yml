@@ -1,0 +1,53 @@
+name: Release PR
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches: [dev, main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+# Serialize updates. Each run reads the latest branch tips and all included PRs.
+concurrency:
+  group: release-pr-dev-main
+  cancel-in-progress: false
+
+jobs:
+  release-pr:
+    name: Maintain release PR
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.pull_request.merged == true &&
+       (github.event.pull_request.base.ref == 'dev' ||
+        (github.event.pull_request.base.ref == 'main' &&
+         github.event.pull_request.head.ref == 'dev' &&
+         github.event.pull_request.head.repo.full_name == github.repository)))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      # Only execute code already merged into the trusted dev branch.
+      # Never check out an incoming PR's head with this write-capable token.
+      - name: Check out dev
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: dev
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24.19.0"
+          package-manager-cache: false
+
+      - name: Test release PR automation
+        run: node --test tools/ci/release-pr.test.mjs
+
+      - name: Create or update release PR
+        run: node tools/ci/release-pr.mjs
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          RELEASE_TIME_ZONE: Asia/Kolkata
