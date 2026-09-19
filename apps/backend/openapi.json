@@ -94,15 +94,15 @@
             "readOnly": true,
             "type": "string"
           },
+          "greetingText": {
+            "description": "A greeting from Go",
+            "type": "string"
+          },
           "language": {
             "description": "Backend language",
             "enum": [
               "go"
             ],
-            "type": "string"
-          },
-          "message": {
-            "description": "A greeting from Go",
             "type": "string"
           },
           "name": {
@@ -111,7 +111,7 @@
           }
         },
         "required": [
-          "message",
+          "greetingText",
           "name",
           "language"
         ],

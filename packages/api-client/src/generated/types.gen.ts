@@ -56,13 +56,13 @@ export type Greeting = {
      */
     readonly $schema?: string;
     /**
+     * A greeting from Go
+     */
+    greetingText: string;
+    /**
      * Backend language
      */
     language: 'go';
-    /**
-     * A greeting from Go
-     */
-    message: string;
     /**
      * The validated name
      */
@@ -98,13 +98,13 @@ export type ErrorModelWritable = {
 
 export type GreetingWritable = {
     /**
+     * A greeting from Go
+     */
+    greetingText: string;
+    /**
      * Backend language
      */
     language: 'go';
-    /**
-     * A greeting from Go
-     */
-    message: string;
     /**
      * The validated name
      */
